@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { MultiDropdown } from './component/multi-dropdown';
+import { MultiDropdown } from './component/multi-select';
 
 function App() {
   const [selectedItems, setSelectedItems] = useState([] as string[]);
