@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { MultiDropdown } from './component/multi-dropdown';
 
 function App() {
+  const [selectedItems, setSelectedItems] = useState([] as string[]);
+  const initialItems = [{
+    value: 'abc',
+    label: 'abc',
+  },
+  {
+    value: 'xyz',
+    label: 'xyz',
+  },
+  {
+    value: 'jkl',
+    label: 'jkl',
+  }]
+ 
+  const handleChange= (value:string) => {
+   // const newArray = [...selectedItems, value]
+    console.log('value', selectedItems) 
+    setSelectedItems([ 
+      ...selectedItems,
+      value
+    ]);
+  } 
+  console.log(selectedItems);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <MultiDropdown items={initialItems} selectedItems={selectedItems} onChange={handleChange} />
     </div>
   );
 }
