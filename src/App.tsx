@@ -3,9 +3,10 @@ import logo from './logo.svg';
 import './App.css';
 import { MultiSelect } from './component/multi-select';
 import { Chips } from './component/chips';
+import { OptionItem } from './interfaces';
 
 function App() {
-  const initialItems = [{
+  const initialItems: OptionItem[] = [{
     label: 'Jenny Hess',
     value: '1',
     isSelected: false

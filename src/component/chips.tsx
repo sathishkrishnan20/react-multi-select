@@ -1,12 +1,7 @@
 import React from 'react';
 import '../styles/chips.css';
-interface ChipsProp {
-   items: {
-       value: string;
-       label: string;
-   }[];
-   onClickRemove: (value: string) => void; 
-}
+import { ChipsProp } from '../interfaces';
+
 export function Chips({items, onClickRemove}: ChipsProp) {
     return (
         <div className="container">

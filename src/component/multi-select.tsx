@@ -1,18 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import '../styles/multi-select.css'
-interface MultiSelectProp {
-  label: string;
-  items: {
-    label: string;
-    value: string;
-    isSelected: boolean;
-  }[],
-  
-  onChange: (value:number) => void;
-}
+import { MultiSelectProp } from '../interfaces';
+
 
 export function MultiSelect({ items, onChange, label}: MultiSelectProp) {
-    
     const handleChange = useCallback((index: number) => {
       onChange(index);
     },[items])
