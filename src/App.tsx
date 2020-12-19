@@ -1,35 +1,56 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { MultiDropdown } from './component/multi-select';
+import { MultiSelect } from './component/multi-select';
+import { Chips } from './component/chips';
 
 function App() {
-  const [selectedItems, setSelectedItems] = useState([] as string[]);
   const initialItems = [{
-    value: 'abc',
-    label: 'abc',
+    label: 'Jenny Hess',
+    value: '1',
+    isSelected: false
   },
   {
-    value: 'xyz',
-    label: 'xyz',
+    label: 'Eliot Fu',
+    value: '2',
+    isSelected: false
   },
   {
-    value: 'jkl',
-    label: 'jkl',
+    label: 'Steve Feliciano',
+    value: '3',
+    isSelected: false
+  },
+  {
+    label: 'Christian',
+    value: '4',
+    isSelected: false
   }]
  
-  const handleChange= (value:string) => {
-   // const newArray = [...selectedItems, value]
-    console.log('value', selectedItems) 
-    setSelectedItems([ 
-      ...selectedItems,
-      value
-    ]);
+  const [selectedItems, setSelectedItems] = useState(initialItems);
+  
+  
+  const handleAdd = (index: number) => {
+    const newItems = [...selectedItems]
+    newItems[index].isSelected = true;
+    setSelectedItems(newItems);
   } 
-  console.log(selectedItems);
+    
+  const handleRemove = (value: string) => {
+    const newItems = [...selectedItems]
+    const index = selectedItems.findIndex(item => item.value === value);
+    newItems[index].isSelected = false;
+    setSelectedItems(newItems);
+  } 
+  
+  
   return (
-    <div className="App">
-        <MultiDropdown items={initialItems} selectedItems={selectedItems} onChange={handleChange} />
+    <div className="App" style={{ display: 'flex', flexDirection: 'column'}}>
+        <div> 
+          <MultiSelect label="Select Users" items={selectedItems} onChange={handleAdd} />
+        </div>
+        <div style={{ marginTop: 16 }}>
+          <Chips items={selectedItems.filter(item => item.isSelected === true)} onClickRemove={handleRemove} />
+        </div>
     </div>
   );
 }
